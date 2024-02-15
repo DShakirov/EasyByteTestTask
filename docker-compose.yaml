@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  EasyByteTestTask:
+    container_name: EasyByteTestTask
+    build: .
+    restart: unless-stopped
+    platform: linux/amd64
