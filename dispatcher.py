@@ -45,10 +45,13 @@ async def handle_convert(message):
         async with aiohttp.ClientSession() as session:
             async with session.get(api_url) as response:
                 e = await response.json()
-        result = e["conversion_result"]
+        try:
+            result = e["conversion_result"]
+        except AttributeError as e:
+            await bot.reply_to(message, f'Произошла ошибка: {str(e)}')
         await bot.reply_to(message, f'{amount} {from_currency} = {result} {to_currency}')
         logger.info(f"Пользователь {user} команда /convert")
-    except:
+    except Exception as e:
         await bot.reply_to(message, f'Произошла ошибка: {str(e)}')
         logger.error(f"Пользователь {user} команда /convert")
 
