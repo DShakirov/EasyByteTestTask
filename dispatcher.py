@@ -71,20 +71,6 @@ async def handle_goodbye(message):
     logger.info(f"Пользователь {user} попрощался")
 
 
-
-
-
-
-
-
-
-
-
-        # Отправляем результат пользователю
-        #await bot.reply_to(message, f'{amount} {from_currency} = {transfered_amount} {to_currency}')
-
-
-
 if __name__ == "__main__":
     print('Polling of CurrencyExchangeBot has started')
     asyncio.run(bot.polling())
