@@ -41,9 +41,9 @@ async def handle_convert(message):
         logger.error(f"Пользователь {user} команда /convert")
         # Отправляем запрос к API для конвертации валют и отвечаем пользователю
     try:
+        api_url = f"https://v6.exchangerate-api.com/v6/{exchangerate_token}/pair/{from_currency}/{to_currency}/{amount}/"
         async with aiohttp.ClientSession() as session:
-            async with session.get(
-                    f"https://v6.exchangerate-api.com/v6/{exchangerate_token}/pair/{from_currency}/{to_currency}/{amount}/") as response:
+            async with session.get(api_url) as response:
                 e = await response.json()
         result = e["conversion_result"]
         await bot.reply_to(message, f'{amount} {from_currency} = {result} {to_currency}')
